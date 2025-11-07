@@ -17,16 +17,23 @@ class FenetrePrincipale(QMainWindow):
         self.setCentralWidget(central)
         v = QVBoxLayout(central)
 
-        # --- Barre de recherche et filtres ---
+       
         self.champ_recherche = QLineEdit()
         self.champ_recherche.setPlaceholderText("Rechercher une tâche...")
+
         self.bouton_rechercher = QPushButton("Rechercher")
-        self.combo_etat_filtre = QComboBox()
-        self.combo_etat_filtre.addItem("Tous")
-        self.combo_etat_filtre.addItems(["À faire", "En cours", "Réalisé", "Abandonné", "En attente"])
         self.bouton_ajouter = QPushButton("Ajouter")
         self.bouton_supprimer = QPushButton("Supprimer")
 
+        self.combo_etat_filtre = QComboBox()
+        self.combo_etat_filtre.addItem("Tous")
+        self.combo_etat_filtre.addItems(["À faire", "En cours", "Réalisé", "Abandonné", "En attente"])
+
+    
+        self.bouton_rechercher.setObjectName("bouton_rechercher")
+        self.bouton_ajouter.setObjectName("bouton_ajouter")
+        self.bouton_supprimer.setObjectName("bouton_supprimer")
+        
         top = QHBoxLayout()
         top.addWidget(QLabel("Recherche:"))
         top.addWidget(self.champ_recherche)
@@ -38,16 +45,16 @@ class FenetrePrincipale(QMainWindow):
         btn_row.addWidget(self.bouton_ajouter)
         btn_row.addWidget(self.bouton_supprimer)
 
+
+
         self.liste_taches = QListWidget()
         self.check_trier_date = QCheckBox("Trier par date de création (croissant)")
 
-        # --- Formulaire ---
+   
         self.champ_titre = QLineEdit()
         self.champ_description = QLineEdit()
-        self.date_debut = QDateEdit()
-        self.date_debut.setDate(QDate.currentDate())
-        self.date_fin = QDateEdit()
-        self.date_fin.setDate(QDate.currentDate())
+        self.date_debut = QDateEdit(QDate.currentDate())
+        self.date_fin = QDateEdit(QDate.currentDate())
         self.combo_etat = QComboBox()
         self.combo_etat.addItems(["À faire", "En cours", "Réalisé", "Abandonné", "En attente"])
         self.check_cloturer = QCheckBox("Clôturer")
@@ -76,14 +83,16 @@ class FenetrePrincipale(QMainWindow):
         form.addWidget(self.bouton_supprimer_commentaire)
         form.addWidget(self.bouton_valider)
 
-        # --- Assemblage principal ---
+
+
+
         v.addLayout(top)
         v.addLayout(btn_row)
         v.addWidget(self.check_trier_date)
         v.addWidget(self.liste_taches)
         v.addLayout(form)
 
-        # --- Connexions ---
+ 
         self.bouton_rechercher.clicked.connect(self.actualiser_liste)
         self.champ_recherche.returnPressed.connect(self.actualiser_liste)
         self.bouton_ajouter.clicked.connect(self.ouvrir_nouvelle_tache)
@@ -98,7 +107,7 @@ class FenetrePrincipale(QMainWindow):
 
         self.actualiser_liste()
 
-    # --- Méthodes ---
+
     def actualiser_liste(self):
         self.liste_taches.clear()
         filtre_titre = self.champ_recherche.text().strip()
@@ -134,7 +143,6 @@ class FenetrePrincipale(QMainWindow):
             for c in tache.get("commentaires", []):
                 self.liste_commentaires.addItem(f"{c['date']} → {c['texte']}")
 
-    # --- Valider tâche ---
     def confirmer_valider_tache(self):
         reply = QMessageBox.question(
             self, "Valider la tâche", "Voulez-vous vraiment valider cette tâche ?",
@@ -151,7 +159,6 @@ class FenetrePrincipale(QMainWindow):
 
         etat_final = "Réalisé" if self.check_cloturer.isChecked() else self.combo_etat.currentText()
 
-        # Récupérer les commentaires
         commentaires = []
         for i in range(self.liste_commentaires.count()):
             texte_complet = self.liste_commentaires.item(i).text()
@@ -176,7 +183,6 @@ class FenetrePrincipale(QMainWindow):
         self.actualiser_liste()
         self.ouvrir_nouvelle_tache()
 
-    # --- Supprimer commentaire ---
     def confirmer_supprimer_commentaire(self):
         index_commentaire = self.liste_commentaires.currentRow()
         if index_commentaire < 0:
@@ -197,7 +203,6 @@ class FenetrePrincipale(QMainWindow):
         elif index_tache is None and index_commentaire >= 0:
             self.liste_commentaires.takeItem(index_commentaire)
 
-    # --- Supprimer tâche ---
     def confirmer_supprimer_tache(self):
         item = self.liste_taches.currentItem()
         if item:
@@ -212,7 +217,6 @@ class FenetrePrincipale(QMainWindow):
                     self.actualiser_liste()
                     self.ouvrir_nouvelle_tache()
 
-    # --- Changement état Clôturer ---
     def changement_etat_cloture(self):
         if self.index_tache_courante is None:
             return
@@ -230,7 +234,6 @@ class FenetrePrincipale(QMainWindow):
             self.controleur.definir_etat_tache(self.index_tache_courante, "En cours")
             self.charger_tache(self.liste_taches.currentItem())
 
-    # --- Ajouter commentaire directement ---
     def ajouter_commentaire(self):
         commentaire = self.champ_commentaire.text().strip()
         if not commentaire:
@@ -242,18 +245,21 @@ class FenetrePrincipale(QMainWindow):
             return
         date_str = QDate.currentDate().toString("yyyy-MM-dd")
         texte_affiche = f"{date_str} → {commentaire}"
-
-        # Affichage immédiat
         self.liste_commentaires.addItem(texte_affiche)
-
-        # Ajout dans le contrôleur si tâche existante
         if self.index_tache_courante is not None:
             self.controleur.ajouter_commentaire(self.index_tache_courante, commentaire)
-
         self.champ_commentaire.clear()
 
 def main():
     app = QApplication(sys.argv)
+
+    try:
+        with open("views/style.qss", "r") as f:
+            style = f.read()
+            app.setStyleSheet(style)
+    except FileNotFoundError:
+        print("Fichier style.qss introuvable — le style ne sera pas appliqué.")
+
     fenetre = FenetrePrincipale()
     fenetre.show()
     sys.exit(app.exec())

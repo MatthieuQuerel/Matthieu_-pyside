@@ -22,13 +22,14 @@ L’application suit le modèle MVC (Modèle - Vue - Contrôleur) afin de sépar
 
 ---
 ### Justification du découpage choisi
-dans mon cas j'ai pas forcement d'utilité d'un doscier Modèle pour un petit projet comme celui-ci. c'est pour cela que j'ai  un docier data avec mon fichier JSON ce qui fera complétement l'afaire 
+Dans mon cas, je n’ai pas forcément besoin d’un dossier Modèle pour un petit projet comme celui-ci. C’est pour cela que j’ai un dossier data avec mon fichier JSON, ce qui fera complètement l’affaire. mais à coté j'ai bien controlleurs et views
 ## Organisation des fichiers
 ```
 gestion_taches/
 ├─ views/
 │ └─ ui_interface.py  # C’est un fichier Python généré de untitled.ui
 │ └─ untitled.ui # C’est un fichier généré par Qt Designer
+│ └─  style.qss # Pour le style de la page
 ├─ controllers/
 │ └─ ControleurTaches.py # Contient la classe TaskController
 ├─ data/
@@ -65,7 +66,7 @@ gestion_taches/
 
  - Une tâche peut contenir plusieurs commentaires.
 
- - Les commentaires sont intégrés directement dans la tâche sous forme de liste (commentaires).
+ - Les commentaires sont intégrés directement dans la tâche sous forme de liste.
 
 ### Fonctionnement de la clôture
 
@@ -94,7 +95,7 @@ Utilisation de QMessageBox pour informer l’utilisateur : Erreur de type messag
 
 ## Navigation et filtres
 
-- une seule page car je trouve que ce genre de speack ne mérite pas forcément de une navigation et je trouve cela meme plus simple avec que 1 page 
+- Une seule page, car je trouve que ce type d’application ne nécessite pas forcément une navigation ; je trouve même cela plus simple avec une seule page.
 
 - Recherche par titre
 
@@ -110,9 +111,9 @@ Suppression par sélection dans la liste
 
 Enregistrement automatique dans le JSON
 
-##Gestion de la clôture
+## Gestion de la clôture
 
-Coche “Clôturer” → message de confirmation
+Coche “Clôturer” => message de confirmation
 
 Passage automatique à “Réalisé”
 
@@ -122,39 +123,31 @@ pour tout action suur les bouton une confirmation est nessesaire
 
 ## Difficultés rencontrées et solutions
 
-- les dificulter son les partie style 
+- Les dificulté sont les parties styles
+  j’ai consulté la documentation.
 
-- autre dificulter c'est la compréancion du language
-pour les surmonters il y avait la documentation 
+- Une autre difficulté concernait la compréhension du langage.
+Pour les surmonter, j’ai consulté la documentation.
 
-Le coche "Clôturer" ne restait pas cochée	
+- Le coche "Clôturer" ne restait pas cochée	
 Ajout du blocage avec(blockSignals(True/False)) pour éviter les boucles.
 
-Les commentaires n’apparaissaient pas après rechargement
+- Les commentaires n’apparaissaient pas après rechargement.
 
-Le tri ne fonctionnait pas correctement	Mise en place d’un tri basé sur la date de création enregistrée dans le modèle.
+- Le tri ne fonctionnait pas correctement	
+Mise en place d’un tri basé sur la date de création enregistrée dans le modèle.
 
-##Ce que j’aurais fait différemment avec plus de temp
-Ajout d’une base sql pour des recherches plus rapides et plus robustes.
+## Ce que j’aurais fait différemment avec plus de temp
+- Ajout d’une base SQL pour des recherches plus rapides et plus robustes.
 
-Création d’un système d’authentification pour gérer plusieurs utilisateurs.
+- Création d’un système d’authentification pour gérer plusieurs utilisateurs.
 
-Ajout d’un système de notifications ou rappels de tâches.
-
-
-
-
-
-
-
-
-
-
+- Ajout d’un système de notifications ou de rappels de tâches.
 
 # Guide d’installation et d’exécution
  ## Cloner le projet
  ```
-git clone https://github.com/votre-utilisateur/gestion_taches.git
+git clone https://github.com/MatthieuQuerel/Matthieu_-pyside.git
 ```
 
  ## Créer un environnement virtuel

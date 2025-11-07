@@ -1,0 +1,52 @@
+/* Style global */
+QMainWindow {
+    
+    font-family: "Segoe UI", sans-serif;
+}
+
+/* Boutons généraux */
+QPushButton {
+    background-color: #0078D7;
+    color: white;
+    border-radius: 8px;
+    padding: 6px 12px;
+    font-weight: bold;
+}
+QPushButton:hover {
+    background-color: #005A9E;
+}
+
+/* Bouton Ajouter */
+QPushButton#bouton_ajouter {
+    background-color: #28A745;
+}
+QPushButton#bouton_ajouter:hover {
+    background-color: #218838;
+}
+
+/* Bouton Supprimer */
+QPushButton#bouton_supprimer {
+    background-color: #DC3545;
+}
+QPushButton#bouton_supprimer:hover {
+    background-color: #C82333;
+}
+
+/* Champs texte */
+QLineEdit {
+  
+    border-radius: 6px;
+    padding: 4px 8px;
+}
+
+/* ComboBox */
+QComboBox {
+    border-radius: 6px;
+    padding: 4px 8px;
+}
+
+/* Liste */
+QListWidget {
+    border: 1px solid #DDD;
+    border-radius: 6px;
+}
