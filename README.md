@@ -23,7 +23,7 @@ L’application suit le modèle MVC (Modèle - Vue - Contrôleur) afin de sépar
 ---
 ### Justification du découpage choisi
 dans mon cas j'ai pas forcement d'utilité d'un doscier Modèle pour un petit projet comme celui-ci. c'est pour cela que j'ai  un docier data avec mon fichier JSON ce qui fera complétement l'afaire 
-##  Organisation des fichiers
+## Organisation des fichiers
 
 gestion_taches/
 ├─ views/
@@ -36,12 +36,13 @@ gestion_taches/
 ├─ main.py # Fichier principal, gère la fenêtre et la Vue 
 └─ README.md # Documentation du projet
 
-##  Choix techniques
+## Choix techniques
 
 ### Stockage des données
 
-- Format choisi : JSON
- Le json  est simple, léger, portable et facilement modifiable il se situe dans  `data/tasks.json`.
+- **Format choisi : JSON**  
+  Le JSON est simple, léger, portable et facilement modifiable.  
+  Il se situe dans `data/tasks.json`.
 
 ### Représentation des tâches et commentaires
 
@@ -54,8 +55,8 @@ gestion_taches/
   "etat": "En cours",
   "commentaires": [
     { "date": "2025-10-28 10:30", "texte": "Machine prête à lancer." }
-  ]
-  "date_creation": "2025-10-25",
+  ],
+  "date_creation": "2025-10-25"
 }
 
 ## Gestion des relations
