@@ -24,7 +24,7 @@ L’application suit le modèle MVC (Modèle - Vue - Contrôleur) afin de sépar
 ### Justification du découpage choisi
 dans mon cas j'ai pas forcement d'utilité d'un doscier Modèle pour un petit projet comme celui-ci. c'est pour cela que j'ai  un docier data avec mon fichier JSON ce qui fera complétement l'afaire 
 ## Organisation des fichiers
-
+```
 gestion_taches/
 ├─ views/
 │ └─ ui_interface.py  # C’est un fichier Python généré de untitled.ui
@@ -35,7 +35,7 @@ gestion_taches/
 │ └─ tasks.json # Fichier de stockage des tâches 
 ├─ main.py # Fichier principal, gère la fenêtre et la Vue 
 └─ README.md # Documentation du projet
-
+```
 ## Choix techniques
 
 ### Stockage des données
@@ -58,6 +58,8 @@ gestion_taches/
   ],
   "date_creation": "2025-10-25"
 }
+```
+
 
 ## Gestion des relations
 
@@ -149,23 +151,34 @@ Ajout d’un système de notifications ou rappels de tâches.
 
 
 
-Guide d’installation et d’exécution
- Cloner le projet
+# Guide d’installation et d’exécution
+ ## Cloner le projet
+ ```
 git clone https://github.com/votre-utilisateur/gestion_taches.git
+```
 
-
- Créer un environnement virtuel
+ ## Créer un environnement virtuel
+ ```
 python -m venv venv
+```
 
- Activer l’environnement virtuel
+ ## Activer l’environnement virtuel
 Sous Windows :
+```
 venv\Scripts\activate
+```
 
-Sous macOS / Linux :
+## Sous macOS / Linux :
+```
 source venv/bin/activate
+```
 
-️ Installer les dépendances
+## Installer les dépendances
+```
 pip install PySide6
+```
 
- Lancer le programme
+## Lancer le programme
+```
 python main.py
+```
