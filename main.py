@@ -5,7 +5,7 @@ from PySide6.QtWidgets import (
 )
 from PySide6.QtCore import QDate
 from controllers.Controllers import ControleurTaches
-
+  
 class FenetrePrincipale(QMainWindow):
     def __init__(self):
         super().__init__()
